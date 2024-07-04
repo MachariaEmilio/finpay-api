@@ -1,0 +1,28 @@
+BEGIN TRY
+
+BEGIN TRAN;
+
+-- CreateTable
+CREATE TABLE [dbo].[UserDetails] (
+    [id] INT NOT NULL,
+    [phone] NVARCHAR(1000) NOT NULL,
+    [name] NVARCHAR(1000) NOT NULL,
+    [email] NVARCHAR(1000) NOT NULL,
+    [balance] INT NOT NULL,
+    CONSTRAINT [UserDetails_pkey] PRIMARY KEY CLUSTERED ([id]),
+    CONSTRAINT [UserDetails_id_key] UNIQUE NONCLUSTERED ([id]),
+    CONSTRAINT [UserDetails_phone_key] UNIQUE NONCLUSTERED ([phone])
+);
+
+COMMIT TRAN;
+
+END TRY
+BEGIN CATCH
+
+IF @@TRANCOUNT > 0
+BEGIN
+    ROLLBACK TRAN;
+END;
+THROW
+
+END CATCH
