@@ -43,11 +43,6 @@ export const createauser = async (req, res) => {
     res.status(201).send(newUser);
   } catch (error) {
     console.error("Error creating user:", error);
-    if (error instanceof prisma.PrismaClientKnownRequestError) {
-      // Known error from Prisma
-      res.status(400).send({ error: error.message });
-    } else {
-      res.status(500).send({ error: "Internal Server Error" });
-    }
+  
   }
 };
