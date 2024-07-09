@@ -1,27 +1,41 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 const prisma = new PrismaClient();
+import {
+  deposit_amount,
+  widthdraw_amount,
+} from "../helperfunctions/transaction helper funtions/transaction.mjs";
+import { checkUserEmail } from "../helperfunctions/checkuser.mjs";
+import { send_email } from "../middlewares/emailsender.mjs";
+
 // gets all taransactions for everyone
 export const getalltransactions = async (req, res) => {
   try {
-  
     const transactions = await prisma.transactionrecord.findMany();
     res.send({ data: { transactions } });
   } catch (error) {
     res.status(500).send({ error: "Internal Server Error" });
   }
 };
-// intiates a new trasaction 
+// intiates a new trasaction
 
 export const createatransaction = async (req, res) => {
   try {
     const { body } = req;
+    // deposit to the user
+    await widthdraw_amount(body.sender_id, body.amount);
+    await deposit_amount(body.receiver_id, body.amount);
+
     body.timestamp = new Date().toISOString();
 
     const randomId = uuidv4();
-    console.log(randomId);
+
     body.transaction_id = randomId;
-    console.log(body);
+
+    const receiveremail = await checkUserEmail(body.sender_id);
+
+    await send_email(receiveremail,body);
+
     const newtransaction = await prisma.transactionrecord.create({
       data: body,
     });

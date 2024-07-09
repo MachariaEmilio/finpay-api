@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-// gets one user 
+// gets one user
 export const getauser = async (req, res) => {
   try {
     const {
@@ -19,7 +19,7 @@ export const getauser = async (req, res) => {
     res.status(500).send({ error: "Internal Server Error" });
   }
 };
-// gets all users in the database 
+// gets all users in the database
 export const getalluser = async (req, res) => {
   try {
     const all_user = await prisma.UserDetails.findMany();
@@ -28,7 +28,6 @@ export const getalluser = async (req, res) => {
     res.status(500).send({ error: "Internal Server Error" });
   }
 };
-
 
 //inserts user to the database after error handling and
 //  verification of certain factors ie unique and the expected datatypes are complete
@@ -40,4 +39,3 @@ export const post_user = async (req, res) => {
   });
   res.status(201).send(newUser);
 };
-

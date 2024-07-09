@@ -1,10 +1,3 @@
-//     "id":6,
-//     "phone":" 07434034456",
-//     "name": "hn",
-//     "email": "email.com",
-//     "balance":600,
-//     "password":"12345"
-
 export const verify_regusers = {
   id: {
     notEmpty: {
@@ -16,9 +9,14 @@ export const verify_regusers = {
       errorMessage: "phone should not be empty ",
     },
   },
-  name: {
+  Fname: {
     notEmpty: {
-      errorMessage: "name should not be empty",
+      errorMessage: "first name should not be empty",
+    },
+  },
+Sname: {
+    notEmpty: {
+      errorMessage: "Second name should not be empty",
     },
   },
   email: {
@@ -36,5 +34,4 @@ export const verify_regusers = {
       errorMessage: " Password should not be empty",
     },
   },
-  
 };

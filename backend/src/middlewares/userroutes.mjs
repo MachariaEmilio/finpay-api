@@ -1,4 +1,4 @@
-import { matchedData, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import {
   CheckUserById,
   CheckUserByPhone,
@@ -15,13 +15,14 @@ export const registeruser = async (req, res, next) => {
 
       const idexist = await CheckUserById(body.id);
       const phoneExist = await CheckUserByPhone(body.phone);
+      
 
       if (idexist === 200 && phoneExist === 200) {
-        res.status(500).send({ error: "id & phone already exists" });
+        res.status(404).send({ error: "id & phone already exists" });
       } else if (idexist === 200) {
-        res.status(500).send({ error: "id already exists" });
+        res.status(404).send({ error: "id already exists" });
       } else if (phoneExist === 200) {
-        res.status(500).send({ error: "phone already exists" });
+        res.status(404).send({ error: "phone already exists" });
       } else {
         next();
       }
