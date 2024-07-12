@@ -5,6 +5,7 @@ import { checkSchema } from "express-validator";
 import {
   getalluser,
   getauser,
+  log_in_user,
   post_user,
 } from "../controller/usercontroller.mjs";
 import {
@@ -16,6 +17,7 @@ import { registeruser } from "../middlewares/userroutes.mjs";
 import { verify_transactions } from "../schema/transactionschema.mjs";
 import { verify_registration_data } from "../middlewares/createtransaction.mjs";
 
+
 const router = Router();
 router.use(express.json());
 // routes to the users
@@ -25,7 +27,9 @@ router
   .route("/registeruser")
   .post(checkSchema(verify_regusers), registeruser, post_user);
 //routes for transaction
-
+router
+  .route("/login/:id/:password")
+  .get( log_in_user);
 router
   .route("/transactions")
   .get(getalltransactions)

@@ -8,8 +8,6 @@ let transporter = nodemailer.createTransport({
   auth: {
     user: "emiliogabu@gmail.com",
     pass: "xuugykuiqwtbaqwc",
-
-    
   },
 });
 export async function send_email(receiver_email, body) {
@@ -31,11 +29,11 @@ export async function send_email(receiver_email, body) {
     console.log("Message sent: %s", info.messageId);
   });
 }
-const data = {
-  transaction_id: "118f1335-c066-4c07-b54e-0147f99fffe6",
-  receiver_id: 2,
-  sender_id: 1,
-  amount: 9,
-  timestamp: "2024-07-09T07:31:16.346Z",
-};
+// const data = {
+//   transaction_id: "118f1335-c066-4c07-b54e-0147f99fffe6",
+//   receiver_id: 2,
+//   sender_id: 1,
+//   amount: 9,
+//   timestamp: "2024-07-09T07:31:16.346Z",
+// };
 // send_email("emiliowanchez@gmail.com",data)
