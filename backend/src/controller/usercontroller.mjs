@@ -40,37 +40,32 @@ export const post_user = async (req, res) => {
   res.status(201).send(newUser);
 };
 export const log_in_user = async (req, res) => {
-  
   const {
-    params: { id ,password },
+    params: { id, password },
   } = req;
 
   const userbyid = await prisma.UserDetails.findUnique({
     where: { id: parseInt(id) },
   });
-  if (userbyid) {
-    if (
-      parseInt(id) === userbyid.id &&
-      password === userbyid.password
-    ) {
-      res
-        .status(200)
-        .send({
-          status: 200,
-          statusmessage: "ok",
-          Message: "login successful",
-        });
-    }else{
-      res.status(200).send({
-        status: 401,
-        statusmessage: "failed",
-        Message: "invalid credentials",
-    })}
-  } else {
+  if (!userbyid) {
     res.status(200).send({
       status: 401,
       statusmessage: "failed",
       Message: "invalid credentials",
     });
+  } else {
+    if (parseInt(id) === userbyid.id && password === userbyid.password) {
+      res.status(200).send({
+        status: 200,
+        statusmessage: "ok",
+        Message: "login successful",
+      });
+    } else {
+      res.status(200).send({
+        status: 401,
+        statusmessage: "failed",
+        Message: "invalid credentials",
+      });
+    }
   }
 };

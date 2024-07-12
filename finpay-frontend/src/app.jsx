@@ -11,13 +11,14 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/Login"
+          path="/"
           element={
             authenticated ? <Home /> : <Logpage setauth={setauthenticated} />
           }
           errorElement={<Errorpage />}
         />
         <Route path="/Home" element={<Home />} errorElement={<Errorpage />} />
+        <Route path="/Login" element={<Logpage />} />
         <Route path="/SignUp" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
