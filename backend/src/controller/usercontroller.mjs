@@ -1,4 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import {
+  CheckUserById,
+  CheckUserByPhone,
+} from "../helperfunctions/checkuser.mjs";
+
 
 const prisma = new PrismaClient();
 // gets one user
@@ -36,8 +41,11 @@ export const post_user = async (req, res) => {
 
   const newUser = await prisma.UserDetails.create({
     data: body,
+   
   });
-  res.status(201).send(newUser);
+  res.status(200).send({ 
+    
+    message: "user succesfully signed" });
 };
 export const log_in_user = async (req, res) => {
   const {
@@ -67,5 +75,28 @@ export const log_in_user = async (req, res) => {
         Message: "invalid credentials",
       });
     }
+  }
+};
+export const checkdetails = async (req, res) => {
+  const {
+    params: { id, phonenumber },
+  } = req;
+  const idexist = await CheckUserById(id);
+  const phoneExist = await CheckUserByPhone(phonenumber);
+
+  if (idexist === 200 && phoneExist === 200) {
+    res.status(404).send({
+      status: 404,
+      error: "id & phone already exists",
+    });
+  } else if (idexist === 200) {
+    res.status(404).send({ status: 404, error: "id already exists" });
+  } else if (phoneExist === 200) {
+    res.status(404).send({ status: 404, error: "phone already exists" });
+  } else {
+    res.status(200).send({
+      status: 200,
+      Message: "details are succesful",
+    });
   }
 };

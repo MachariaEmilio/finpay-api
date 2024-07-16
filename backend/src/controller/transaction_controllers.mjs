@@ -5,7 +5,7 @@ import {
   deposit_amount,
   widthdraw_amount,
 } from "../helperfunctions/transaction helper funtions/transaction.mjs";
-import { checkUserEmail } from "../helperfunctions/checkuser.mjs";
+
 import { send_email } from "../middlewares/emailsender.mjs";
 
 // gets all taransactions for everyone
