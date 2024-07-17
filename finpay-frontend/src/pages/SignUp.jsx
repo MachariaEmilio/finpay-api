@@ -5,7 +5,7 @@ import Button from "../components/button";
 import { Link } from "react-router-dom";
 // import { send_email } from "../helper funtions/emailsender.mjs";
 
-const SignUp = ({ inputdata, setinput_value, setCompletedsignup }) => {
+const SignUp = ({ inputdata, setinput_value, setCompletedsignup ,setsentotp}) => {
   const [errorPassMessage, seterrorPassMessage] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,7 +21,11 @@ const SignUp = ({ inputdata, setinput_value, setCompletedsignup }) => {
         console.log(data);
         seterrorPassMessage({ detailserror: data.error });
       } else {
-        setCompletedsignup(true);
+      const code = await (await fetch(`http://localhost:3000/sendemails/${inputdata.email}`)).json()
+      console.log(code)
+      if(code){
+      setsentotp(parseInt(code.Otp))
+            }      setCompletedsignup(true);
         seterrorPassMessage({ detailserror: "login succesful✅✅✅" });
       }
     }

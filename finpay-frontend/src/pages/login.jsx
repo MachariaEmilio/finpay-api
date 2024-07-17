@@ -4,12 +4,16 @@ import Button from "../components/button";
 import Input from "../components/input";
 import Label from "../components/label";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updatedetails } from "../feature/detais.mjs";
+
 
 export default function Logpage({ setauth }) {
   const navigate = useNavigate();
   const [input_val, setinput_value] = useState(null);
 
   const [errormessage, seterrormessage] = useState("");
+  const dispatch = useDispatch()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -73,7 +77,7 @@ export default function Logpage({ setauth }) {
             onchange={handleChange}
           />
 
-          <Button name="submit" type="submit" />
+          <Button onclick={()=>dispatch(updatedetails(input_val.id))}  name="submit" type="submit" />
 
           <label htmlFor="">Don't have an account </label>
           <Link to="/Signup">Sign Up</Link>

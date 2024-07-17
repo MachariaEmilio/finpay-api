@@ -6,21 +6,20 @@ import {
 let transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "emiliogabu@gmail.com",
-    pass: "xuugykuiqwtbaqwc",
+    user: "thenerdmobileservices@gmail.com",
+    pass: "kdke gvaw ldhr ugkk",
   },
 });
 export async function send_email(receiver_email, body) {
   const names = await checknames(body.sender_id);
   let mailOptions = {
-    from: "<emiliogabu@gmail.com>", // sender address
-    to: receiver_email, // list of receivers
-    subject: "confirmation message", // Subject line
+    to: receiver_email,
+    subject: "confirmation message",
     text: `${body.transaction_id} Confirmed ,you have received ${
       body.amount
     } KSH from  ${names.Fname} ${names.Sname} ${body.sender_id} on ${
       body.timestamp
-    } new balance is ${await checkbalance(body.receiver_id)}`, // plain text body
+    } new balance is ${await checkbalance(body.receiver_id)}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -36,4 +35,23 @@ export async function send_email(receiver_email, body) {
 //   amount: 9,
 //   timestamp: "2024-07-09T07:31:16.346Z",
 // };
-// send_email("emiliowanchez@gmail.com",data)
+// send_email("emiliowanchez32@gmail.com", data);
+
+// send otp
+export const send_otp = (receiver_id) => {
+  let otp = Math.floor(Math.random(10) * 1000000);
+  console.log(otp);
+  let mailOptions = {
+    to: receiver_id,
+    subject: "confirmation code",
+    text: `please enter the following confirmation code ${otp}`,
+  };
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("Message sent: %s", info.messageId);
+  });
+  return otp;
+};
+// send_otp("emiliowanchez@gmail.com");

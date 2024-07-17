@@ -4,16 +4,19 @@ import Label from "../components/label";
 import Input from "../components/input";
 import Button from "../components/button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-export const Confirmdetails = ({ inputdata }) => {
+export const Confirmdetails = ({ inputdata,sentotp }) => {
   const navigate = useNavigate();
   const [otp, setotp] = useState(null);
   const [error, setmessage] = useState(null);
 
   async function handlesubmit(event) {
     event.preventDefault();
+  
 
-    if (otp !== "1234") {
+
+    if (otp !== sentotp) {
       setmessage("invalid code ");
     } else {
       const { pass, ...postdetails } = inputdata;
@@ -28,6 +31,7 @@ export const Confirmdetails = ({ inputdata }) => {
         throw new Error(`Error: ${response.status}`);
       } else {
         setmessage("you have successfully logged in ");
+       
         setInterval(() => {
           navigate("/Home");
         }, 2000);
@@ -36,10 +40,11 @@ export const Confirmdetails = ({ inputdata }) => {
   }
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setotp(value);
+    setotp(parseInt(value));
   };
 
-  console.log(otp);
+  console.log("input otp=",otp);
+  console.log("sent=" ,sentotp)
   return (
     <div className="main">
       <p>This is the last face </p>
@@ -50,7 +55,7 @@ export const Confirmdetails = ({ inputdata }) => {
         <Input type="number" name="Otp" onchange={handleChange} />
         <Label label_name={error} />
 
-        <Button name="submit" type="submit" />
+        <Button onclick={()=>dispatch(updatedetails(78))} name="submit" type="submit" />
       </form>
     </div>
   );

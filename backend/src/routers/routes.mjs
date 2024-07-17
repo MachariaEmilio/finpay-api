@@ -17,6 +17,7 @@ import { verify_regusers } from "../schema/userschema.mjs";
 import { registeruser } from "../middlewares/userroutes.mjs";
 import { verify_transactions } from "../schema/transactionschema.mjs";
 import { verify_registration_data } from "../middlewares/createtransaction.mjs";
+import { send_email_otp } from "../controller/emailcontroller.mjs";
 
 const router = Router();
 router.use(express.json());
@@ -37,4 +38,6 @@ router
     createatransaction
   );
 router.route("/checkdetails/:id/:phonenumber").get(checkdetails);
+
+router.route("/sendemails/:receiveremail").get(send_email_otp);
 export default router;
