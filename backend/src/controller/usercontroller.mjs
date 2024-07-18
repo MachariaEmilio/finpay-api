@@ -4,7 +4,6 @@ import {
   CheckUserByPhone,
 } from "../helperfunctions/checkuser.mjs";
 
-
 const prisma = new PrismaClient();
 // gets one user
 export const getauser = async (req, res) => {
@@ -16,7 +15,8 @@ export const getauser = async (req, res) => {
       where: { id: parseInt(id) },
     });
     if (userbyid) {
-      res.send(userbyid);
+      const { password, ...userdetails } = userbyid;
+      res.send(userdetails);
     } else {
       res.status(404).send({ error: "User not found" });
     }
@@ -41,11 +41,10 @@ export const post_user = async (req, res) => {
 
   const newUser = await prisma.UserDetails.create({
     data: body,
-   
   });
-  res.status(200).send({ 
-    
-    message: "user succesfully signed" });
+  res.status(200).send({
+    message: "user succesfully signed",
+  });
 };
 export const log_in_user = async (req, res) => {
   const {

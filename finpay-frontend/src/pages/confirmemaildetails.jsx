@@ -5,12 +5,13 @@ import Input from "../components/input";
 import Button from "../components/button";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { updatedetails } from "../feature/detais.mjs";
 
 export const Confirmdetails = ({ inputdata,sentotp }) => {
   const navigate = useNavigate();
   const [otp, setotp] = useState(null);
   const [error, setmessage] = useState(null);
-
+  const dispatch= useDispatch()
   async function handlesubmit(event) {
     event.preventDefault();
   
@@ -31,7 +32,16 @@ export const Confirmdetails = ({ inputdata,sentotp }) => {
         throw new Error(`Error: ${response.status}`);
       } else {
         setmessage("you have successfully logged in ");
-       
+        alert("you have successfully logged in ");
+
+
+        const userdetails = 
+        await fetch(`http://localhost:3000/users/${inputdata.id}`)
+      .then ((data)=>(data.json()))
+  
+    dispatch(updatedetails(userdetails))
+
+        
         setInterval(() => {
           navigate("/Home");
         }, 2000);
@@ -43,8 +53,7 @@ export const Confirmdetails = ({ inputdata,sentotp }) => {
     setotp(parseInt(value));
   };
 
-  console.log("input otp=",otp);
-  console.log("sent=" ,sentotp)
+
   return (
     <div className="main">
       <p>This is the last face </p>

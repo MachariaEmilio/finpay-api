@@ -1,25 +1,25 @@
-import React from 'react'
-import {  useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-
+import React, { useEffect } from "react";
+import {  useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/button";
 
 const Home = () => {
-  const id_value = useSelector((data)=>data.userdetails.userid)  
- 
+  const userdetails = useSelector((data) => data.userdetails.userdetails);
 
-  
+const navigate= useNavigate()
   return (
     <div className="main">
-      <p>this is the home page  </p>
+      <p>DASHBOARD</p>
+      <p>Welcome {userdetails.Fname} {userdetails.Sname} </p>
 
-      <div className="main"> 
-        <p>the available balance</p>
-        <p>id is {id_value}</p>
-        <p>KSH 30,000.00</p>
-        
+      <div className="main">
+        <p>Your available balance</p>
+      
+        <p>KSH   {userdetails.balance}</p>
+        <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money"/>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

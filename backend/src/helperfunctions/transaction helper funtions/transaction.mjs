@@ -10,14 +10,17 @@ export const checkbalance = async (userid) => {
 
   return balance.balance;
 };
-export const checknames= async (userid) => {
-  const names= await prisma.userDetails.findUnique({
+
+export const checknames = async (userid) => {
+  const names = await prisma.userDetails.findUnique({
     where: { id: userid },
-    select: { 
-      Fname: true ,Sname:true},
+    select: {
+      Fname: true,
+      Sname: true,
+    },
   });
 
-  return names
+  return names;
 };
 
 // check if amount is greater or equal to the amount being sent

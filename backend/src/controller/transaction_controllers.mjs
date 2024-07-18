@@ -6,7 +6,8 @@ import {
   widthdraw_amount,
 } from "../helperfunctions/transaction helper funtions/transaction.mjs";
 
-import { send_email } from "../middlewares/emailsender.mjs";
+import { send_email, send_email_to_sender } from "../middlewares/emailsender.mjs";
+import { get_email } from "../helperfunctions/checkuser.mjs";
 
 // gets all taransactions for everyone
 export const getalltransactions = async (req, res) => {
@@ -31,15 +32,18 @@ export const createatransaction = async (req, res) => {
     const randomId = uuidv4();
 
     body.transaction_id = randomId;
-
-    const receiveremail = await checkUserEmail(body.sender_id);
-
+    const senderemail=await  get_email(body.receiver_id)
+    
+    const receiveremail = await get_email(body.sender_id);
+    // send to receiver
+await send_email_to_sender(senderemail,body)
+// sends to receiver 
     await send_email(receiveremail,body);
 
     const newtransaction = await prisma.transactionrecord.create({
       data: body,
     });
-    res.status(200).json({ data: newtransaction });
+    res.status(200).json({ status:200,data: newtransaction });
   } catch (error) {
     res.status(500).send({ error: "Internal Server Error" });
   }

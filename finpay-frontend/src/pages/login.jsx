@@ -29,7 +29,13 @@ export default function Logpage({ setauth }) {
         const data = await response.json();
 
         if (data.status === 200) {
+
           seterrormessage("login successful");
+          const userdetails = 
+          await fetch(`http://localhost:3000/users/${input_val.id}`)
+        .then ((data)=>(data.json()))
+
+  dispatch(updatedetails(userdetails))
           setTimeout(() => {
             setauth(true);
             navigate("/Home");
@@ -49,6 +55,7 @@ export default function Logpage({ setauth }) {
       [name]: value,
     }));
   };
+
   return (
     <>
       <div className="main">
@@ -77,7 +84,7 @@ export default function Logpage({ setauth }) {
             onchange={handleChange}
           />
 
-          <Button onclick={()=>dispatch(updatedetails(input_val.id))}  name="submit" type="submit" />
+          <Button  name="submit" type="submit" />
 
           <label htmlFor="">Don't have an account </label>
           <Link to="/Signup">Sign Up</Link>

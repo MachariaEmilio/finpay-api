@@ -19,3 +19,15 @@ export const CheckUserByPhone = async (user_phone) => {
   }
   return 404;
 };
+export async function get_email (id){
+
+    const useremail = await prisma.userDetails.findUnique({
+      where: { id: id },
+      select: { email: true },
+    });
+  
+    return useremail.email;
+
+
+}
+
