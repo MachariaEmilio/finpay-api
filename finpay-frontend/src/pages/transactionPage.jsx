@@ -8,40 +8,42 @@ import { useNavigate } from "react-router-dom";
 import { updatedetails } from "../feature/detais.mjs";
 
 const SendMoney = () => {
-    const navigate= useNavigate()
-    const dispatch= useDispatch()
-    const senderid= useSelector(
-        (data)=> data.userdetails.userdetails.id
-    )
-   
-  const [inputData, SetInputData] = useState({sender_id:senderid});
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const senderid = useSelector((data) => data.userdetails.userdetails.id);
 
+  const [inputData, SetInputData] = useState({ sender_id: senderid });
+  console.log(inputData);
   async function handleSubmit(e) {
     e.preventDefault();
-const createTransaction = await fetch("http://localhost:3000/transactions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(inputData),
-  })
-  const data= await createTransaction.json();
+    console.log("object input data:", inputData);
+    const createTransaction = await fetch(
+      "http://localhost:3000/transactions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputData),
+      }
+    );
+    const data = await createTransaction.json();
+    console.log(data);
+    if (data.status !== 200) {
+      alert(
+        "Something happened.The transaction is not complete .Please check the message sent to you "
+      );
+    } else {
+      alert("You have successfully sent .Wait for confirmation message ");
 
-if (data.status!==200){
-alert ("Something happened.The transaction is not complete .Please check the message sent to you ")
-}else{
-    alert ("You have successfully sent .Wait for confirmation message ")
+      const userdetails = await fetch(
+        `http://localhost:3000/users/${inputData.sender_id}`
+      ).then((data) => data.json());
 
-    const userdetails = 
-    await fetch(`http://localhost:3000/users/${inputData.sender_id}`)
-  .then ((data)=>(data.json()))
-
-dispatch(updatedetails(userdetails))
-}
-
-    navigate("/Home")
-
-
+      dispatch(updatedetails(userdetails));
+    }
+    console.log(userdetails);
+    navigate("/Home");
   }
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -76,12 +78,7 @@ dispatch(updatedetails(userdetails))
           onchange={handleChange}
         />
         <Label htmlfor="password" label_name="Enter your password" />
-        <Input
-          type="password"
-          name="password"
-          id="password"
-       
-        />
+        <Input type="password" name="password" id="password" />
         <Button type="submit" name="submit" />
       </form>
     </div>

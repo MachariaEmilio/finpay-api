@@ -19,7 +19,7 @@ export async function send_email(receiver_email, body) {
       body.amount
     } KSH from  ${names.Fname} ${names.Sname} ${body.sender_id} on ${
       body.timestamp
-    } new balance is ${await checkbalance(body.receiver_id)}`,
+    } ,your new balance is ${await checkbalance(body.receiver_id)}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -37,7 +37,7 @@ export async function send_email_to_sender(sender_email, body) {
       body.amount
     } KSH to   ${names.Fname} ${names.Sname} ${body.receiver_id} on ${
       body.timestamp
-    } new balance is ${await checkbalance(body.sender_id)}`,
+    } ,your new balance is ${await checkbalance(body.sender_id)}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -76,7 +76,7 @@ export const send_otp = (receiver_id) => {
 export const send_notification = (receiver_id, text) => {
   let mailOptions = {
     to: receiver_id,
-    subject: "confirmation code",
+    subject: "notification message ",
     text: text,
   };
   transporter.sendMail(mailOptions, (error, info) => {

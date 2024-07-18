@@ -12,11 +12,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-      <Route
+        <Route
           path="/"
-          element={
-            authenticated ? <Home /> : <Logpage setauth={setauthenticated} />
-          }
+          element={<Logpage  />}
           errorElement={<Errorpage />}
         />
         <Route
@@ -27,8 +25,12 @@ const App = () => {
           errorElement={<Errorpage />}
         />
         <Route path="/Home" element={<Home />} errorElement={<Errorpage />} />
-        <Route path="/Home/SendMoney" element={<SendMoney/>} errorElement={<Errorpage />} />
-       
+        <Route
+          path="/Home/SendMoney"
+          element={<SendMoney />}
+          errorElement={<Errorpage />}
+        />
+
         <Route path="/SignUp" element={<Mainsignup />} />
       </Routes>
     </BrowserRouter>

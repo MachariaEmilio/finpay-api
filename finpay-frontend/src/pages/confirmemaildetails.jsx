@@ -40,11 +40,11 @@ export const Confirmdetails = ({ inputdata,sentotp }) => {
       .then ((data)=>(data.json()))
   
     dispatch(updatedetails(userdetails))
-
+console.log(userdetails)
         
-        setInterval(() => {
+      
           navigate("/Home");
-        }, 2000);
+      
       }
     }
   }
@@ -64,7 +64,7 @@ export const Confirmdetails = ({ inputdata,sentotp }) => {
         <Input type="number" name="Otp" onchange={handleChange} />
         <Label label_name={error} />
 
-        <Button onclick={()=>dispatch(updatedetails(78))} name="submit" type="submit" />
+        <Button  name="submit" type="submit" />
       </form>
     </div>
   );

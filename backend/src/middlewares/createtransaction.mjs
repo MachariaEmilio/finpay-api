@@ -13,12 +13,12 @@ export const verify_registration_data = async (req, res, next) => {
     const receiverexists = await CheckUserById(body.receiver_id);
     
     if (senderexists !== 200) {
-      res.status(404).send("you are not registered");
+      res.status(200).send("you are not registered");
     } else {
       const senderemail = await get_email(body.sender_id)
       if (receiverexists!== 200) {
       send_notification(senderemail , "The receiver id you entered does not exist ,please try checking the id you entered")
-        res.status(404).send("receiver does not exist");
+        res.status(200).send("receiver does not exist");
       } else {
         const sender_amount = await balance(body.sender_id, body.amount);
 

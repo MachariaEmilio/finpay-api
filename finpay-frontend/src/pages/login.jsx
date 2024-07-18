@@ -7,13 +7,12 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updatedetails } from "../feature/detais.mjs";
 
-
-export default function Logpage({ setauth }) {
+export default function Logpage() {
   const navigate = useNavigate();
   const [input_val, setinput_value] = useState(null);
 
   const [errormessage, seterrormessage] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,19 +28,18 @@ export default function Logpage({ setauth }) {
         const data = await response.json();
 
         if (data.status === 200) {
+          seterrormessage({success:"login successful ✅✅"});
+          const userdetails = await fetch(
+            `http://localhost:3000/users/${input_val.id}`
+          ).then((data) => data.json());
 
-          seterrormessage("login successful");
-          const userdetails = 
-          await fetch(`http://localhost:3000/users/${input_val.id}`)
-        .then ((data)=>(data.json()))
-
-  dispatch(updatedetails(userdetails))
+          dispatch(updatedetails(userdetails));
           setTimeout(() => {
-            setauth(true);
+           
             navigate("/Home");
-          }, 2000);
+          }, 1000);
         } else {
-          seterrormessage("Invalid Credentials");
+          seterrormessage({error:"Invalid Credentials❌❌"});
         }
       }
     } catch (error) {
@@ -54,17 +52,19 @@ export default function Logpage({ setauth }) {
       ...prev,
       [name]: value,
     }));
+    seterrormessage("")
   };
 
   return (
     <>
       <div className="main">
-        <p>Welcome back to Finpay Api</p>
-        <Label label_name="Login page" />
+        <p className="descri">Welcome back to Finpay Api</p>
+        <Label label_name="Login " classname="descri" />
+        <Label style={{color :"green",alignSelf:"center"}} htmlfor="id" label_name={errormessage.success} />
         <form action="" onSubmit={handleSubmit}>
           <Label label_name="Enter your details" />
 
-          <Label htmlfor="id" label_name={errormessage} />
+          <Label style={{color :"red",alignSelf:"center"}} htmlfor="id" label_name={errormessage.error} />
           <Label htmlfor="id_number" label_name="Id *" />
 
           <Input
@@ -84,11 +84,14 @@ export default function Logpage({ setauth }) {
             onchange={handleChange}
           />
 
-          <Button  name="submit" type="submit" />
-
-          <label htmlFor="">Don't have an account </label>
-          <Link to="/Signup">Sign Up</Link>
+          <Button name="submit" type="submit" />
         </form>
+        <div className=" accounts">
+          <Label label_name="Don't have an account? " />
+          <Link to="/Signup" className="links">
+            Sign Up
+          </Link>
+        </div>
       </div>
     </>
   );

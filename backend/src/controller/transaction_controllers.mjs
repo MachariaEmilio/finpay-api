@@ -32,9 +32,9 @@ export const createatransaction = async (req, res) => {
     const randomId = uuidv4();
 
     body.transaction_id = randomId;
-    const senderemail=await  get_email(body.receiver_id)
+    const receiveremail=await  get_email(body.receiver_id)
     
-    const receiveremail = await get_email(body.sender_id);
+    const senderemail = await get_email(body.sender_id);
     // send to receiver
 await send_email_to_sender(senderemail,body)
 // sends to receiver 

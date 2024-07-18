@@ -3,6 +3,7 @@ import {
   CheckUserById,
   CheckUserByPhone,
 } from "../helperfunctions/checkuser.mjs";
+import { send_notification } from "../middlewares/emailsender.mjs";
 
 const prisma = new PrismaClient();
 // gets one user
@@ -42,8 +43,10 @@ export const post_user = async (req, res) => {
   const newUser = await prisma.UserDetails.create({
     data: body,
   });
+  send_notification(newUser.email,`you have successfully been registered to finpay mobile services your user id is ${newUser.id}`)
+
   res.status(200).send({
-    message: "user succesfully signed",
+    message: "user succesfully signed and notification message sent ",
   });
 };
 export const log_in_user = async (req, res) => {

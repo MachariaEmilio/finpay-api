@@ -10,31 +10,29 @@ const SignUp = ({
   setCompletedsignup,
   setsentotp,
 }) => {
-  const [errorPassMessage, seterrorPassMessage] = useState("");
+  const [message, setmessage] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (inputdata.pass !== inputdata.password) {
-      seterrorPassMessage({ passworderror: "The password  do not match" });
+      setmessage({ passworderror: "The password  do not match" });
     } else {
-      
       // we need to check if the user and the phone number exists
-      const detailsStatus = await await fetch(
+      const detailsStatus = await fetch(
         `http://localhost:3000/checkdetails/${inputdata.id}/${inputdata.phone}`
       );
       const data = await detailsStatus.json();
       if (!detailsStatus.ok) {
-      
-        seterrorPassMessage({ detailserror: data.error });
+        setmessage({ detailserror: data.error });
       } else {
         const code = await (
           await fetch(`http://localhost:3000/sendemails/${inputdata.email}`)
         ).json();
-     
+
         if (code) {
           setsentotp(parseInt(code.Otp));
         }
         setCompletedsignup(true);
-        seterrorPassMessage({ detailserror: "login succesful✅✅✅" });
+        setmessage({success: "login succesful✅✅✅" });
       }
     }
   };
@@ -52,16 +50,19 @@ const SignUp = ({
         [name]: parseInt(value),
       }));
     }
+   setmessage("")
   };
- 
+
   return (
     <>
       <div className="main">
-        <p>Welcome to Finpay Api</p>
-        <Label label_name="Signup page" />
+        <p className="descri">Welcome to Finpay Api</p>
+        <Label label_name="Signup" classname="descri" />
+        <Label style={{color :"green",alignSelf:"center"}} htmlfor="id" label_name={message.success} />
+
         <form action="" onSubmit={handleSubmit}>
           <Label label_name="Enter your details" />
-          <Label htmlfor="id" label_name={errorPassMessage.detailserror} />
+          <Label style={{color :"red",alignSelf:"center"}} htmlfor="id" label_name={message.detailserror} />
 
           <Label htmlfor="id" label_name="Id *" />
           <Input type="number" name="id" id="id" onchange={handleChange} />
@@ -94,7 +95,7 @@ const SignUp = ({
             max="20"
             onchange={handleChange}
           />
-          <Label htmlfor="id" label_name={errorPassMessage.passworderror} />
+          <Label style={{color :"red",alignSelf:"center"}} htmlfor="id" label_name={message.passworderror} />
 
           <Label htmlfor="CPNumber" label_name="Confirm Password *" />
           <Input
@@ -107,10 +108,14 @@ const SignUp = ({
           />
 
           <Button name="submit" type="submit" />
-
-          <label htmlFor="">Already have an account </label>
-          <Link to="/Login">Login</Link>
         </form>
+        <div className="accounts">
+        
+          <label htmlFor="">Already have an account? </label>
+          <Link to="/Login" className="links">
+            Login
+          </Link>
+        </div>
       </div>
     </>
   );

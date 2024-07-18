@@ -7,6 +7,9 @@ const Home = () => {
   const userdetails = useSelector((data) => data.userdetails.userdetails);
 
 const navigate= useNavigate()
+if (!userdetails.id){
+  navigate("/login")
+}else{
   return (
     <div className="main">
       <p>DASHBOARD</p>
@@ -19,7 +22,7 @@ const navigate= useNavigate()
         <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money"/>
       </div>
     </div>
-  );
+  );}
 };
 
 export default Home;
