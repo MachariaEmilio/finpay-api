@@ -16,6 +16,7 @@ const SignUp = ({
     if (inputdata.pass !== inputdata.password) {
       seterrorPassMessage({ passworderror: "The password  do not match" });
     } else {
+      
       // we need to check if the user and the phone number exists
       const detailsStatus = await await fetch(
         `http://localhost:3000/checkdetails/${inputdata.id}/${inputdata.phone}`
