@@ -1,0 +1,89 @@
+body {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+#root {
+  background-color: rgb(11, 12, 12);
+  min-height: 100vh;
+  width: 400px;
+}
+div {
+  background-color: rgb(191, 219, 219);
+
+  height: auto;
+  width: 100%;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  align-self: center;
+  background-color: rgb(212, 228, 222);
+  border-radius: 20px;
+  width: 310px;
+}
+input {
+  margin: 10px;
+  margin-top: 5px;
+  margin-left: 0px;
+  height: 25px;
+  border-radius: 20px;
+  border: 1px solid green;
+  padding-left: 10px;
+}
+button {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 5px;
+  align-self: center;
+  width: 100px;
+  border: none;
+  background-color: rgb(58, 194, 110);
+}
+.descri {
+  font-weight: bold;
+  font-size: 30px;
+}
+.links {
+  background-color: rgb(199, 206, 209);
+  color: rgb(43, 38, 34);
+  text-decoration: none;
+  padding: 5px;
+  color: rgb(8, 30, 226);
+  font-size: 15px;
+  border-radius: 20px;
+  align-self: center;
+}
+.accounts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.transact{
+  color: rgb(8, 155, 165);
+  padding-top: 0;
+  margin-top: -30px;
+  margin-bottom: 0px;
+
+}
+.backbutton{
+  color:rgb(222, 228, 230);
+  background-color:rgb(1, 11, 15);
+  align-self:start;
+  margin-top:20px;
+  width:60px;
+}
+.transactionform{
+  margin-top: 40px;
+}

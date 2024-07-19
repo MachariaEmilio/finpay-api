@@ -16,9 +16,12 @@ datasource db {
 model UserDetails{
   id Int @id @unique
    phone String @unique
- name String
+ Fname String
+  Sname String
    email String 
    balance Int 
+   password String
+   
 
    }
    model transactionrecord{
