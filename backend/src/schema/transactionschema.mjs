@@ -13,5 +13,9 @@ export const verify_transactions = {
     notEmpty: {
       errorMessage: "amount should not be empty",
     },
+  },  password: {
+    notEmpty: {
+      errorMessage: "amount should not be empty",
+    },
   },
 };

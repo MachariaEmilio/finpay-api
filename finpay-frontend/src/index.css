@@ -67,6 +67,23 @@ button {
 .accounts {
   display: flex;
   flex-direction: row;
-
   justify-content: center;
+}
+
+.transact{
+  color: rgb(8, 155, 165);
+  padding-top: 0;
+  margin-top: -30px;
+  margin-bottom: 0px;
+
+}
+.backbutton{
+  color:rgb(222, 228, 230);
+  background-color:rgb(1, 11, 15);
+  align-self:start;
+  margin-top:20px;
+  width:60px;
+}
+.transactionform{
+  margin-top: 40px;
 }

@@ -15,11 +15,11 @@ export async function send_email(receiver_email, body) {
   let mailOptions = {
     to: receiver_email,
     subject: "confirmation message",
-    text: `${body.transaction_id} Confirmed ,you have received ${
+    text: `${body.transaction_id} Confirmed ,you have received KSH ${
       body.amount
-    } KSH from  ${names.Fname} ${names.Sname} ${body.sender_id} on ${
+    }  from  ${names.Fname} ${names.Sname} ${body.sender_id} on ${
       body.timestamp
-    } ,your new balance is ${await checkbalance(body.receiver_id)}`,
+    } ,your new balance is KSH ${await checkbalance(body.receiver_id)}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -33,11 +33,11 @@ export async function send_email_to_sender(sender_email, body) {
   let mailOptions = {
     to: sender_email,
     subject: "confirmation message",
-    text: `${body.transaction_id} Confirmed ,you have succesfully sent  ${
+    text: `${body.transaction_id} Confirmed ,you have succesfully sent KSH ${
       body.amount
-    } KSH to   ${names.Fname} ${names.Sname} ${body.receiver_id} on ${
+    }  to   ${names.Fname} ${names.Sname} ${body.receiver_id} on ${
       body.timestamp
-    } ,your new balance is ${await checkbalance(body.sender_id)}`,
+    } ,Your new balance is Ksh ${await checkbalance(body.sender_id)}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -62,7 +62,7 @@ export const send_otp = (receiver_id) => {
   let mailOptions = {
     to: receiver_id,
     subject: "confirmation code",
-    text: `please enter the following confirmation code ${otp}`,
+    text: `Please enter the following confirmation code ${otp}`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
@@ -76,7 +76,7 @@ export const send_otp = (receiver_id) => {
 export const send_notification = (receiver_id, text) => {
   let mailOptions = {
     to: receiver_id,
-    subject: "notification message ",
+    subject: "Notification message ",
     text: text,
   };
   transporter.sendMail(mailOptions, (error, info) => {

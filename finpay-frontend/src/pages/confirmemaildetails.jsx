@@ -38,6 +38,9 @@ export const Confirmdetails = ({ inputdata,sentotp }) => {
         const userdetails = 
         await fetch(`http://localhost:3000/users/${inputdata.id}`)
       .then ((data)=>(data.json()))
+
+      localStorage.setItem("userdetails" , JSON.stringify(userdetails))
+
   
     dispatch(updatedetails(userdetails))
 console.log(userdetails)
@@ -56,7 +59,7 @@ console.log(userdetails)
 
   return (
     <div className="main">
-      <p>This is the last face </p>
+      <p>This is the last phase</p>
       <form action="" onSubmit={handlesubmit}>
         <Label
           label_name={`please input the code sent to ${inputdata.email}`}

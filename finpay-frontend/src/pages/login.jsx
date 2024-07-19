@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import Button from "../components/button";
 import Input from "../components/input";
 import Label from "../components/label";
@@ -29,9 +29,13 @@ export default function Logpage() {
 
         if (data.status === 200) {
           seterrormessage({success:"login successful ✅✅"});
+
+
           const userdetails = await fetch(
             `http://localhost:3000/users/${input_val.id}`
           ).then((data) => data.json());
+
+          localStorage.setItem("userdetails" , JSON.stringify(userdetails))
 
           dispatch(updatedetails(userdetails));
           setTimeout(() => {

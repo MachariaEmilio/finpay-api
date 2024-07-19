@@ -9,13 +9,18 @@ import { updatedetails } from "../feature/detais.mjs";
 
 const SendMoney = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const senderid = useSelector((data) => data.userdetails.userdetails.id);
+  const [message,setmessage]= useState("")
 
-  const [inputData, SetInputData] = useState({ sender_id: senderid });
+  // const senderid = useSelector((data) => data.userdetails.userdetails.id);
+  const senderid = JSON.parse(localStorage.getItem("userdetails"))
+
+  const [inputData, SetInputData] = useState({ sender_id: senderid.id });
   console.log(inputData);
   async function handleSubmit(e) {
     e.preventDefault();
+    if(inputData.amount <=0){
+      setmessage("The minimum amount for transaction 1")
+    }else{
     console.log("object input data:", inputData);
     const createTransaction = await fetch(
       "http://localhost:3000/transactions",
@@ -27,6 +32,13 @@ const SendMoney = () => {
         body: JSON.stringify(inputData),
       }
     );
+    if(!createTransaction.ok){
+      alert(
+        "Something happened.The transaction is not complete .Please check the message sent to you "
+      );
+      navigate("/Home")
+    }
+    else{
     const data = await createTransaction.json();
     console.log(data);
     if (data.status !== 200) {
@@ -36,14 +48,10 @@ const SendMoney = () => {
     } else {
       alert("You have successfully sent .Wait for confirmation message ");
 
-      const userdetails = await fetch(
-        `http://localhost:3000/users/${inputData.sender_id}`
-      ).then((data) => data.json());
-
-      dispatch(updatedetails(userdetails));
-    }
-    console.log(userdetails);
-    navigate("/Home");
+   
+      navigate("/Home");
+    }}
+  }
   }
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -58,11 +66,16 @@ const SendMoney = () => {
         [name]: value,
       }));
     }
+    setmessage("")
   };
 
   return (
     <div className="main">
-      <form action="receiver_id" onSubmit={handleSubmit}>
+      <Button classname="backbutton"    onclick={()=>navigate("/Home")} name="Back"/>
+      
+      <p className="descri transact"> Send money</p>
+      
+      <form action="receiver_id" onSubmit={handleSubmit} className="transactionform">
         <Label htmlFor="receiver_id" label_name="Enter the receiver id " />
         <Input
           name="receiver_id"
@@ -77,8 +90,9 @@ const SendMoney = () => {
           id="amount"
           onchange={handleChange}
         />
+        <Label style={{color:"red",fontSize:"17px"}} label_name={message}/>
         <Label htmlfor="password" label_name="Enter your password" />
-        <Input type="password" name="password" id="password" />
+        <Input type="password" name="password" id="password"  onchange={handleChange} />
         <Button type="submit" name="submit" />
       </form>
     </div>

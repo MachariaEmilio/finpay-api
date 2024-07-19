@@ -35,13 +35,14 @@ export const createatransaction = async (req, res) => {
     const receiveremail=await  get_email(body.receiver_id)
     
     const senderemail = await get_email(body.sender_id);
+    const{password ,...transactionhistorydata}= body
     // send to receiver
 await send_email_to_sender(senderemail,body)
 // sends to receiver 
     await send_email(receiveremail,body);
 
     const newtransaction = await prisma.transactionrecord.create({
-      data: body,
+      data: transactionhistorydata,
     });
     res.status(200).json({ status:200,data: newtransaction });
   } catch (error) {
