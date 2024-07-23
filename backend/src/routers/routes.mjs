@@ -12,6 +12,7 @@ import {
 import {
   getalltransactions,
   createatransaction,
+  getTransactionRecord,
 } from "../controller/transaction_controllers.mjs";
 import { verify_regusers } from "../schema/userschema.mjs";
 import { registeruser } from "../middlewares/userroutes.mjs";
@@ -29,6 +30,7 @@ router
   .post(checkSchema(verify_regusers), registeruser, post_user);
 //routes for transaction
 router.route("/login/:id/:password").get(log_in_user);
+router.route("/transactionbyid/:id").get(getTransactionRecord)
 router
   .route("/transactions")
   .get(getalltransactions)

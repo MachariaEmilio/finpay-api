@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/button";
+import Transactionshistoy from "../components/transactionshistoy";
 
 const Home = () => {
   
@@ -30,11 +31,13 @@ if (!details.id){
       <p>DASHBOARD</p>
       <p>Welcome {details.Fname} {details.Sname} </p>
 
-      <div className="main">
+      <div className=" balance container" id="balance">
         <p>Your available balance</p>      
-        <p>KSH   {Balance}</p>
-        <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money"/>
+        <p>KSH  <span className="color">{Balance}</span> </p>
+       
       </div>
+      <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money"/>
+      <div> <Transactionshistoy/> </div>
     </div>
   );}
 };

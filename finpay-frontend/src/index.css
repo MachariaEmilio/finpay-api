@@ -87,3 +87,75 @@ button {
 .transactionform{
   margin-top: 40px;
 }
+#balance{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+}
+.container {
+  background-color: #82b4c7;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 300px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 26px;
+  text-align: center;
+  border-radius: 40px;
+
+}
+.container p{
+  margin: 10px;
+}
+span{
+  color:rgb(32, 10, 224);
+  font-size:larger;
+  font-weight: 800;
+}
+.history{
+  display: flex;
+ border: 2px solid rgb(115, 157, 170);
+flex-direction: row;
+justify-content: space-between;
+margin: 3px;
+border-radius: 10px;
+width:320px
+
+}
+.history p{
+
+  font-size:15px;
+}
+.history div{
+  
+  margin: 4px;
+  border: none;
+}
+
+.amount {
+  display: flex;
+  align-self: flex-end;
+  color:blue;
+
+}
+
+.allstatement{
+  border: 2px solid rgb(43, 144, 151);
+  border-radius: 10px;
+  margin: 10px;
+ width: 360px;
+ max-height: 330px;
+ overflow-y: scroll;
+}
+.red{
+  color:red;
+  padding-left: 20px;
+}
+.date{
+  display: flex;
+  flex-direction: column;
+margin: 0;
+}
