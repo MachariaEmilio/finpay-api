@@ -28,7 +28,7 @@ if (!details.id){
 }else{
   return (
     <div className="main">
-      <p>DASHBOARD</p>
+      {/* <p>DASHBOARD</p> */}
       <p>Welcome {details.Fname} {details.Sname} </p>
 
       <div className=" balance container" id="balance">
@@ -36,8 +36,10 @@ if (!details.id){
         <p>KSH  <span className="color">{Balance}</span> </p>
        
       </div>
-      <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money"/>
+      <Button onclick={()=>(navigate("/Home/SendMoney"))} name ="send money" src ="../src/assets/send_money_icon.png" classname="send"/>
       <div> <Transactionshistoy/> </div>
+   
+
     </div>
   );}
 };
