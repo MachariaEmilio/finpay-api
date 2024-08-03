@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "./button";
 
 const Transactionshistoy = () => {
   const [datas, setdata] = useState([]);
@@ -17,7 +18,10 @@ const Transactionshistoy = () => {
 
   return (
     <>
-      Statement
+    <div className="statement">     <p>statement </p>  {/* <a href="./can.docx" download>   */}
+      < Button src="../src\assets\downloadIcon.png" classname="download"/>
+      {/* </a> */}</div>
+
       <div className="allstatement">
         {datas.map((transaction) => (
           <Transactionlist

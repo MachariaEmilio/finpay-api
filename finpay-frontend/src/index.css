@@ -146,6 +146,7 @@ width:320px
   border: 2px solid rgb(43, 144, 151);
   border-radius: 10px;
   margin: 10px;
+  margin-top: 0px;
  width: 360px;
  max-height: 330px;
  overflow-y: scroll;
@@ -158,4 +159,26 @@ width:320px
   display: flex;
   flex-direction: column;
 margin: 0;
+}
+.send{
+  display: flex;
+  flex-direction: row;
+background-color: rgb(216, 211, 224);
+}
+.send img{
+  width:30px;
+  height: 30px;
+}
+.download{
+  background-color: transparent;
+}
+.download img{
+  height:20px;
+}
+.statement{
+  width:350px;
+  margin-left: 12px;
+  margin-bottom: 0px;
+  display: flex;  
+  justify-content: space-between;
 }

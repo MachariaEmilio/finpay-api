@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Logpage from "./pages/login";
-import Errorpage from "./pages/Errorpage";
+import Logpage from "./pages/login.jsx";
+import Errorpage from "./pages/Errorpage.jsx";
 import Home from "./pages/Home.jsx";
 
 import Mainsignup from "./pages/MainSignup.jsx";
@@ -12,11 +12,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={<Logpage  />}
-          errorElement={<Errorpage />}
-        />
+        <Route path="/" element={<Logpage />} errorElement={<Errorpage />} />
         <Route
           path="/Login"
           element={
