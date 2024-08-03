@@ -10,4 +10,4 @@ How It Works:
 
 This is the homepage design, which provides users with an overview of their account and easy access to various functionalities such as viewing balances,accessing transaction history , and transferring funds.
 
-![image](https://github.com/user-attachments/assets/860a277b-7a77-4932-a6cd-dbd3de384a99)  ![image](https://github.com/user-attachments/assets/95908c78-3838-449a-8c11-decf9b889ae0)
+![image](https://github.com/user-attachments/assets/860a277b-7a77-4932-a6cd-dbd3de384a99)![image](https://github.com/user-attachments/assets/95908c78-3838-449a-8c11-decf9b889ae0)
