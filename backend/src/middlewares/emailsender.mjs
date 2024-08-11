@@ -161,7 +161,7 @@ const data = {
   amount: 900,
   timestamp: "2024-07-09T07:31:16.346Z",
 };
-send_email_to_sender("emiliowanchez32@gmail.com", data);
+// send_email_to_sender("emiliowanchez32@gmail.com", data);
 
 // send otp
 export const send_otp = (receiver_id) => {
