@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@react-email/components": "^0.0.21",
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",

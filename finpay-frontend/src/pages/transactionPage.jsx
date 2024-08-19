@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updatedetails } from "../feature/detais.mjs";
 
-const SendMoney = () => {
+const SendMoney = ({setStatus}) => {
   const navigate = useNavigate();
   const [message,setmessage]= useState("")
 
@@ -15,13 +15,17 @@ const SendMoney = () => {
   const senderid = JSON.parse(localStorage.getItem("userdetails"))
 
   const [inputData, SetInputData] = useState({ sender_id: senderid.id });
-  console.log(inputData);
+  // console.log(inputData);
   async function handleSubmit(e) {
     e.preventDefault();
-    if(inputData.amount <=0){
+    if(inputData.amount <=0 ){
       setmessage("The minimum amount for transaction 1")
-    }else{
-    console.log("object input data:", inputData);
+    }else{ 
+      if(inputData.sender_id === inputData.receiver_id){
+        setmessage("you can't create a transaction to your account ")
+      }
+      else {
+    // console.log("object input data:", inputData);
     const createTransaction = await fetch(
       "http://localhost:3000/transactions",
       {
@@ -36,7 +40,7 @@ const SendMoney = () => {
       alert(
         "Something happened.The transaction is not complete .Please check the message sent to you "
       );
-      navigate("/Home")
+      setStatus(false)
     }
     else{
     const data = await createTransaction.json();
@@ -49,10 +53,10 @@ const SendMoney = () => {
       alert("You have successfully sent .Wait for confirmation message ");
 
    
-      navigate("/Home");
+   setStatus(false)
     }}
   }
-  }
+  }}
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name !== "password") {
@@ -70,10 +74,9 @@ const SendMoney = () => {
   };
 
   return (
-    <div className="main">
-      <Button classname="backbutton"    onclick={()=>navigate("/Home")} name="Back"/>
+    <div className="SendMoneyModal ">
       
-      <p className="descri transact"> Send money</p>
+      <p className="descri " id="transcat" > Send money</p>
       
       <form action="receiver_id" onSubmit={handleSubmit} className="transactionform">
         <Label htmlFor="receiver_id" label_name="Enter the receiver id " />
