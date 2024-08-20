@@ -6,6 +6,7 @@ import Home from "./pages/Home.jsx";
 
 import Mainsignup from "./pages/MainSignup.jsx";
 import SendMoney from "./pages/transactionPage.jsx";
+import Settings from "./pages/settingspage.jsx";
 
 const App = () => {
   const [authenticated, setauthenticated] = useState(false);
@@ -22,8 +23,8 @@ const App = () => {
         />
         <Route path="/Home" element={<Home />} errorElement={<Errorpage />} />
         <Route
-          path="/Home/SendMoney"
-          element={<SendMoney />}
+          path="/Home/Settings"
+          element={<Settings/>}
           errorElement={<Errorpage />}
         />
 

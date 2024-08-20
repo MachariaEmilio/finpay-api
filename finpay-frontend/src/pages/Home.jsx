@@ -23,7 +23,7 @@ const Home = () => {
       setBalance(userdetails.balance);
     }
     checkbalance();
-  }, []);
+  }, [open]);
 
   const navigate = useNavigate();
   if (!details.id) {
@@ -31,11 +31,17 @@ const Home = () => {
   } else {
     return (
       <div className="main">
-        {/* <p>DASHBOARD</p> */}
-        <p>
-          Welcome {details.Fname} {details.Sname}{" "}
-        </p>
-
+        <header className="header">
+          <img
+            src="../src/assets/settingicon.png"
+            onClick={() => {
+              navigate("/home/settings");
+            }}
+          />
+          <p>
+            Welcome {details.Fname} {details.Sname}{" "}
+          </p>
+        </header>
         <div className=" balance container" id="balance">
           <p>Your available balance</p>
           <p>
@@ -49,23 +55,23 @@ const Home = () => {
           classname="send"
         />
         <div>
-          {" "}
-          <Transactionshistoy />{" "}
+          <Transactionshistoy />
         </div>
 
-        <Modal onClose={handleModalstatus} open={open}
-        style={{
-          display:"block",
-          position: "absolute",
-          margin:"auto",
-        
-          marginTop:"120px",
-          height: 300,
-          width:350,}}>
-          
-          
-          
-          <SendMoney setStatus ={setOpen}/>
+        <Modal
+          onClose={handleModalstatus}
+          open={open}
+          style={{
+            display: "block",
+            position: "absolute",
+            margin: "auto",
+
+            marginTop: "120px",
+            height: 300,
+            width: 350,
+          }}
+        >
+          <SendMoney setStatus={setOpen} />
         </Modal>
       </div>
     );
