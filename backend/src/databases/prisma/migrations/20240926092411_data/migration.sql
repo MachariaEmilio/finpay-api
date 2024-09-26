@@ -6,7 +6,8 @@ BEGIN TRAN;
 CREATE TABLE [dbo].[UserDetails] (
     [id] INT NOT NULL,
     [phone] NVARCHAR(1000) NOT NULL,
-    [name] NVARCHAR(1000) NOT NULL,
+    [Fname] NVARCHAR(1000) NOT NULL,
+    [Sname] NVARCHAR(1000) NOT NULL,
     [email] NVARCHAR(1000) NOT NULL,
     [balance] INT NOT NULL,
     [password] NVARCHAR(1000) NOT NULL,
