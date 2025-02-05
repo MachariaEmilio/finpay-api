@@ -4,7 +4,7 @@ import SignUp from "./SignUp";
 
 const Mainsignup = () => {
   const [completedSignup, setCompletedsignup] = useState(false);
-  const [inputdata, setinput_value] = useState({ balance: 500 });
+  const [inputdata, setinput_value] = useState({ balance: 90500 });
   const[sentotp,setsentotp]=useState(null)
 
   return (

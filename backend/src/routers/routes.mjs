@@ -30,7 +30,7 @@ router
   .post(checkSchema(verify_regusers), registeruser, post_user);
 //routes for transaction
 router.route("/login/:id/:password").get(log_in_user);
-router.route("/transactionbyid/:id").get(getTransactionRecord)
+router.route("/transactionbyid/:id").get(getTransactionRecord);
 router
   .route("/transactions")
   .get(getalltransactions)
