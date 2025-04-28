@@ -1,4 +1,3 @@
-
 This is the Finpay API. It is designed as a mobile transfer web page that facilitates secure and efficient financial transactions.
 
 How It Works:
