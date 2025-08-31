@@ -7,7 +7,9 @@ How It Works:
 4. Confirmation: The system sends a confirmation notification for successful transactions.
 5. Security: All transactions are encrypted to ensure data security and privacy.
 
-This is the homepage design, which provides users with an overview of their account and easy access to various functionalities such as viewing balances,accessing transaction history , and transferring funds.
+This is the homepage design, which provides users with an overview of their account and easy access to various functionalities such as viewing balances,accessing transaction history , and transferring funds.  
+
+
 
 ![image](https://github.com/user-attachments/assets/860a277b-7a77-4932-a6cd-dbd3de384a99)![image](https://github.com/user-attachments/assets/95908c78-3838-449a-8c11-decf9b889ae0)
 
